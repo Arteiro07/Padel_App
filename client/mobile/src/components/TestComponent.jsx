@@ -18,11 +18,12 @@ class TestComponent extends Component{
 
     constructor(){
         super();
-        console.log("constructor", this)
+        this.handleButtonClick = this.handleButtonClick.bind(this);
     }
 
-    handleButtonClick(){
-        console.log('Button Clicked');
+    handleButtonClick = () =>{
+        this.state.count ++;
+        console.log('Button Clicked', this.state.count);
     }
 
     render(){
