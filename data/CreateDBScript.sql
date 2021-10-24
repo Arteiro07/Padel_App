@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   `Email` NVARCHAR(150) NOT NULL,
   `Telephone` NVARCHAR(9) NOT NULL,
   `Location` VARCHAR(150) NULL,
-  `Password` BINARY(16) NULL,
+  `Password` VARCHAR(100) NULL,
   PRIMARY KEY (`IdUser`),
   UNIQUE INDEX `IdUser_UNIQUE` (`IdUser` ASC) VISIBLE,
   UNIQUE INDEX `UserName_UNIQUE` (`UserName` ASC) VISIBLE,
