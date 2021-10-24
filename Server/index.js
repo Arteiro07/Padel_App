@@ -2,7 +2,7 @@
 
 const express = require("express");
 
-var CORS = require("cors");
+var cors = require("cors");
 
 const PORT = process.env.PORT || 3001;
 
