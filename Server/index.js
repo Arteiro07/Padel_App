@@ -20,16 +20,14 @@ app.use(cors());
 
 app.get("/api",(req, res) => {
 
-makeHandlerAwareOfAsyncErrors(getAll(req,res))
-//console.log(res);
+makeHandlerAwareOfAsyncErrors(getAll(req,res))});
 
 
-  // Find all users
-
-
-
-
+app.listen(config.port, () => {
+  console.log(`Server listening on ${config.port}`);
 });
+
+
 async function getAll(req, res) {
   console.log("1");
 	const users = await db.users.findAll();
@@ -46,10 +44,3 @@ function makeHandlerAwareOfAsyncErrors(handler) {
 		}
 	};
 }
-
-
-
-
-app.listen(config.port, () => {
-  console.log(`Server listening on ${config.port}`);
-});
