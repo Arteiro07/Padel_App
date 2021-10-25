@@ -1,49 +1,48 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize('sqlite::memory:');
+
+
+module.exports = (sequelize, Sequelize) => {
 
 const User = sequelize.define('User', {
   // Model attributes are defined here
   IdUser: {
-    type: DataTypes.INTEGER,
+    type: Sequelize.INTEGER,
     allowNull: false,
     primaryKey: true
   },
   UserName: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     allowNull: false
-    
+
     // allowNull defaults to true
   },
   DisplayName: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     allowNull: false
     // allowNull defaults to true
   },
   Email: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     allowNull: false
     // allowNull defaults to true
   },
   Telephone: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     allowNull: false
     // allowNull defaults to true
   },
   Location: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     allowNull: false
     // allowNull defaults to true
   },
   Password: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     allowNull: false
     // allowNull defaults to true
   }
 }, {
-  tableName: "user"
+  tableName: "User",
+  timestamps: false,
 });
-
-// `sequelize.define` also returns the model
-//console.log(User === sequelize.models.User); // true
-
-module.exports = User;
+return User;
+};

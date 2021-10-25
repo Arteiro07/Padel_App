@@ -3,30 +3,52 @@
 const config = require("./config");
 
 const express = require("express");
-const loaders = require("./loaders/sqlite");
+const db = require("./model");
 
 var cors = require("cors");
-const User = require("./model");
 
 
-
-
+try {
+    db.sequelize.sync();
+     console.log('Connection has been established successfully.');
+ } catch (error) {
+     console.error('Unable to connect to the database:', error);
+ }
 const app = express();
 
 app.use(cors());
 
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" });
-  
+app.get("/api",(req, res) => {
 
-  loaders.sqlite
+makeHandlerAwareOfAsyncErrors(getAll(req,res))
+//console.log(res);
+
 
   // Find all users
-  const users = User.findAll();
-  //console.log(users.every(user => user instanceof User)); // true
-  //console.log(users);
-  console.log("All users:", JSON.stringify(users, null, 2));
+
+
+
+
 });
+async function getAll(req, res) {
+  console.log("1");
+	const users = await db.users.findAll();
+  console.log(users);
+	res.status(200).json(users);
+};
+
+function makeHandlerAwareOfAsyncErrors(handler) {
+	return async function(req, res, next) {
+		try {
+			await handler(req, res);
+		} catch (error) {
+			next(error);
+		}
+	};
+}
+
+
+
 
 app.listen(config.port, () => {
   console.log(`Server listening on ${config.port}`);
