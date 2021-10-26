@@ -19,19 +19,17 @@ const app = express();
 app.use(cors());
 
 app.get("/api",(req, res) => {
-
-makeHandlerAwareOfAsyncErrors(getAll(req,res))});
-
+	makeHandlerAwareOfAsyncErrors(getAll(req,res))
+});
 
 app.listen(config.port, () => {
   console.log(`Server listening on ${config.port}`);
 });
 
-
 async function getAll(req, res) {
-  console.log("1");
+  //console.log("1");
 	const users = await db.users.findAll();
-  console.log(users);
+  //console.log(users);
 	res.status(200).json(users);
 };
 
